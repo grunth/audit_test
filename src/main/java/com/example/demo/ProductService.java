@@ -31,12 +31,11 @@ public class ProductService {
     public Product updateProduct(Long id, Product updatedProduct) {
         Optional<Product> existingProduct = productRepository.findById(id);
         if (existingProduct.isPresent()) {
-            // Update fields as needed
             Product product = existingProduct.get();
             product.setName(updatedProduct.getName());
             return productRepository.save(product);
         }
-        return null; // Handle not found case
+        return null;
     }
 
     public void deleteProduct(Long id) {
