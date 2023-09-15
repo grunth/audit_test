@@ -10,15 +10,16 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public abstract class AuditAtBy {
+public abstract class AuditAtBy implements Serializable {
 
     @CreatedDate
-    @Column(name = "created_at")
+    @Column(name = "created_at", updatable = false)
     private Date createdAt;
 
     @LastModifiedDate
@@ -26,12 +27,10 @@ public abstract class AuditAtBy {
     private Date updatedAt;
 
     @CreatedBy
-    @Column(name = "created_by")
+    @Column(name = "created_by", updatable = false)
     private String createdBy;
 
     @LastModifiedBy
     @Column(name = "updated_by")
     private String updatedBy;
-
-
 }
