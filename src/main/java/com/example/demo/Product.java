@@ -8,6 +8,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "products")
 @Data
+@EntityListeners(AuditAtByListener.class)
 public class Product extends AuditAtBy implements Serializable {
 
     @Id
